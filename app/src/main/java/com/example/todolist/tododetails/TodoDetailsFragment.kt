@@ -25,6 +25,7 @@ class TodoDetailsFragment: Fragment() {
         val arguments=TodoDetailsFragmentArgs.fromBundle(requireArguments())
 
         val viewModelFactory=TodoDetailsViewModelFactory(database,application,arguments.noteId)
+
         val viewModel= ViewModelProvider(this,viewModelFactory).get(TodoDetailsViewModel::class.java)
         binding.viewModel=viewModel
         binding.lifecycleOwner=this

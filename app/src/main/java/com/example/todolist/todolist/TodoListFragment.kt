@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -19,8 +20,8 @@ import kotlinx.coroutines.*
 
 class TodoListFragment :Fragment() {
 
-    private var fragmentModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + fragmentModelJob)
+//    private var fragmentModelJob = Job()
+//    private val uiScope = CoroutineScope(Dispatchers.Main + fragmentModelJob)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,26 +29,21 @@ class TodoListFragment :Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding: FragmentTodoListBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_todo_list, container, false
-        )
+            inflater, R.layout.fragment_todo_list, container, false)
+
 
         val application = requireNotNull(this.activity).application
-
         val database = TodoDatabase.getInstance(application).todoDatabaseDao
-
+        val viewModelFactory=TodoListViewModelFactory(database,application)
+        val viewModel=ViewModelProvider(this,viewModelFactory).get(TodoListViewModel::class.java)
+        binding.viewModel=viewModel
+        binding.lifecycleOwner=this
 
         binding.buttonAdd.setOnClickListener { v: View ->
 
-            uiScope.launch {
-                val kity = Note()
-                withContext(Dispatchers.IO) {
-                    database.insert(kity)
-                }
-                v.findNavController()
-                    .navigate(TodoListFragmentDirections.actionTodoListFragmentToTodoDetailsFragment(kity.noteId))
-            }
-
+            viewModel.navigatetodtails(v)
         }
+
         return binding.root
 
     }
