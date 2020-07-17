@@ -3,4 +3,9 @@
     <string name="todo_details_fragment">TodoDetailsFragment</string>
     <string name="button_write_item">记事</string>
     <string name="app_name">TodoList</string>
+    <string name="details_title_text">标题</string>
+    <string name="details_edit_text_hint">标题</string>
+    <string name="details_details_text">内容</string>
+    <string name="details_details_text_hint">在此输入</string>
+    <string name="details_complete_button">创建</string>
 </resources>
