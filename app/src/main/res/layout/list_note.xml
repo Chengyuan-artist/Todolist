@@ -58,6 +58,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textViewDetailsTitle"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailsTitle"
+                    android:enabled="false"
+                    android:visibility="invisible"
                     tools:text="time" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
