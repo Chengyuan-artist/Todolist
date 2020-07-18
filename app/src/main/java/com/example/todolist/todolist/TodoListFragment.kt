@@ -46,7 +46,7 @@ class TodoListFragment :Fragment() {
 
         viewModel.notes.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data=it
+                adapter.submitList(it)
             }
         })
         binding.buttonAdd.setOnClickListener { v: View ->
