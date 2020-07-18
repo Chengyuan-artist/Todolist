@@ -22,6 +22,11 @@ class TodoDetailsViewModel (
             livenote.addSource(database.getLiveNote(noteId), livenote::setValue)
     }
 
+    fun update_note(note: Note){
+        uiScope.launch {
+            update(note)
+        }
+    }
 
     private suspend fun clear() {
         withContext(Dispatchers.IO) {

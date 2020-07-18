@@ -1,12 +1,19 @@
 package com.example.todolist.todolist
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todolist.R
 import com.example.todolist.TextItemViewHolder
 import com.example.todolist.database.Note
 
 class TodoListAdapter :RecyclerView.Adapter<TextItemViewHolder>(){
     var data= listOf<Note>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun getItemCount() = data.size
 
@@ -16,6 +23,9 @@ class TodoListAdapter :RecyclerView.Adapter<TextItemViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
-        TODO("Not yet implemented")
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = layoutInflater
+            .inflate(R.layout.list_note, parent, false) as TextView
+        return TextItemViewHolder(view)
     }
 }

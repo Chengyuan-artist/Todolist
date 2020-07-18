@@ -15,7 +15,8 @@
             android:id="@+id/action_todoListFragment_to_todoDetailsFragment"
             app:destination="@id/todo_details_fragment"
             app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right" />
+            app:popEnterAnim="@anim/slide_in_right"
+            />
     </fragment>
 
 

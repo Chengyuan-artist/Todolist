@@ -16,7 +16,7 @@ class TodoListViewModel (
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-//    private val notes = database.getAllNotes()
+    val notes = database.getAllNotes()
 
 
     fun navigatetodtails(v: View)

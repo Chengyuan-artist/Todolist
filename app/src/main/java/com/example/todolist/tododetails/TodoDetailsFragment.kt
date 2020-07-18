@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.todolist.R
 import com.example.todolist.database.Note
 import com.example.todolist.database.TodoDatabase
@@ -30,6 +32,18 @@ class TodoDetailsFragment: Fragment() {
         binding.viewModel=viewModel
         binding.lifecycleOwner=this
 
+        viewModel.livenote.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                it.notecontent= binding.editTextDetailsDetails.text.toString()
+                it.title=binding.editTextDetailsTitle.text.toString()
+                viewModel.update_note(it)
+            }
+        })
+
+        binding.buttonDetailsComplete.setOnClickListener {v:View->
+            v.findNavController().
+                navigate(TodoDetailsFragmentDirections.actionTodoDetailsFragmentToTodoListFragment())
+        }
 
 
         return binding.root
