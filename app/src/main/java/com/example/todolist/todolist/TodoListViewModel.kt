@@ -1,6 +1,7 @@
 package com.example.todolist.todolist
 
 import android.app.Application
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
@@ -21,10 +22,10 @@ class TodoListViewModel (
     fun navigatetodtails(v: View)
     {
         uiScope.launch {
-            val kity = Note()
-            insert(kity)
+            val dog = Note()
+            insert(dog)
             v.findNavController()
-                .navigate(TodoListFragmentDirections.actionTodoListFragmentToTodoDetailsFragment(kity.noteId))
+                .navigate(TodoListFragmentDirections.actionTodoListFragmentToTodoDetailsFragment(getNote().noteId))
         }
     }
 
@@ -35,6 +36,13 @@ class TodoListViewModel (
         }
     }
 
+    private suspend fun getNote() :Note {
+        var dog=Note()
+        withContext(Dispatchers.IO) {
+            dog=database.getNote()
+        }
+        return dog
+    }
     private suspend fun update(note: Note) {
         withContext(Dispatchers.IO) {
             database.update(note)

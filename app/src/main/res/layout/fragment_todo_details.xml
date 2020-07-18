@@ -40,7 +40,7 @@
             android:hint="@string/details_edit_text_hint"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@={viewModel.livenote.notecontent}"
+            android:text="@={viewModel.livenote.title}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textViewDetailsTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -70,7 +70,7 @@
             android:hint="@string/details_details_text_hint"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
-            android:text="@={viewModel.livenote.title}"
+            android:text="@={viewModel.livenote.notecontent}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDetailsDetails" />

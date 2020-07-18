@@ -19,7 +19,7 @@ class TodoDetailsViewModel (
     val livenote = MediatorLiveData<Note>()
 
     init {
-        livenote.addSource(database.getLiveNote(noteId),livenote::setValue)
+            livenote.addSource(database.getLiveNote(noteId), livenote::setValue)
     }
 
 

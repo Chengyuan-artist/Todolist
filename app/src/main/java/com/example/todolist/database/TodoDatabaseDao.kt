@@ -29,4 +29,7 @@ interface TodoDatabaseDao {
 
     @Query("SELECT * FROM notes_table ORDER BY noteId DESC LIMIT 1")
     fun getCurrentNote():LiveData<Note>
+
+    @Query("SELECT * FROM notes_table ORDER BY noteId DESC LIMIT 1")
+    fun getNote():Note
 }
