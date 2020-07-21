@@ -1,15 +1,12 @@
 package com.example.todolist.todolist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.R
 import com.example.todolist.database.Note
+import com.example.todolist.databinding.ListNoteBinding
 
 class TodoListAdapter : ListAdapter<Note, TodoListAdapter.ViewHolder>(NoteDiffCallback()){
 
@@ -25,24 +22,19 @@ class TodoListAdapter : ListAdapter<Note, TodoListAdapter.ViewHolder>(NoteDiffCa
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(itemView: View):RecyclerView.ViewHolder(itemView){
-        val title:TextView=itemView.findViewById(R.id.textViewDetailsTitle)
-        val time:TextView=itemView.findViewById(R.id.textViewItemTime)
+    class ViewHolder private constructor(val binding: ListNoteBinding):RecyclerView.ViewHolder(binding.root){
 
-        fun bind(
-            item: Note
-        ) {
-            val res = itemView.context.resources
-            title.text = item.title
-            time.text = item.creatingtime.toString()
+        fun bind(item: Note) {
+//            val res = itemView.context.resources
+            binding.note=item
+            binding.executePendingBindings()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(R.layout.list_note, parent, false)
-                return ViewHolder(view)
+                val binding= ListNoteBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
     }

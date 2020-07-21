@@ -46,7 +46,8 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="textViewTitle" />
+                    tools:text="textViewTitle"
+                    app:textViewDetailsTitle="@{note}"/>
 
                 <TextView
                     android:id="@+id/textViewItemTime"
@@ -60,7 +61,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailsTitle"
                     android:enabled="false"
                     android:visibility="invisible"
-                    tools:text="time" />
+                    tools:text="time"
+                    app:textViewItemTime="@{note}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
