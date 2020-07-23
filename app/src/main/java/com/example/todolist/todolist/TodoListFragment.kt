@@ -1,6 +1,7 @@
 package com.example.todolist.todolist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,8 @@ class TodoListFragment : Fragment(), OnItemTouchCallBackListener {
 
     lateinit var database: TodoDatabaseDao
     lateinit var adapter: TodoListAdapter
+
+    val TAG="TodoListFragment"
 
 
     override fun onCreateView(
@@ -65,14 +68,21 @@ class TodoListFragment : Fragment(), OnItemTouchCallBackListener {
 
         viewModel.notes.observe(viewLifecycleOwner, Observer {
 
+            Log.d(TAG,"Observer is being called")
+
             noteList = if (it.isNotEmpty()) {
                 it.toMutableList()
             } else {
                 mutableListOf<Note>()
             }
 
-            adapter.submitList(it)
+            noteList!!.sortByDescending { note ->
+                note.importance
+            }
 
+            adapter.submitList(noteList!!.toList())
+
+            Log.d(TAG,"Observer is called")
 
         })
 
@@ -90,6 +100,7 @@ class TodoListFragment : Fragment(), OnItemTouchCallBackListener {
 
     }
 
+
     private fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
         val temp = this[index1]
         this[index1] = this[index2]
@@ -99,30 +110,37 @@ class TodoListFragment : Fragment(), OnItemTouchCallBackListener {
 
     override fun onMove(sourcePosition: Int, targetPosition: Int): Boolean {
         if (noteList != null) {
+
+
+            noteList!!.swap(sourcePosition, targetPosition)
+
+            var num = noteList!!.size.toLong()
+
+
+            for (x in noteList!!) {
+                x.importance = num
+                num -= 1
+            }
+
+
+            noteList!!.sortByDescending { note ->
+                note.importance
+            }
+
+            adapter.submitList(noteList!!.toList())
+
+
             uiScope.launch {
-
-                noteList!!.swap(sourcePosition, targetPosition)
-
-                var num = noteList!!.size.toLong()
-
-
-                for (x in noteList!!) {
-                    x.importance = num
-                    num -= 1
-                    withContext(Dispatchers.IO){
+                withContext(Dispatchers.IO) {
+                    Log.d(TAG,"Database is being updated")
+                    for (x in noteList!!){
                         database.update(x)
                     }
+                    Log.d(TAG,"Database is updated")
                 }
-
-
-                noteList!!.sortByDescending { note ->
-                    note.importance
-                }
-
-                adapter.submitList(noteList!!.toList())
-
-
             }
+
+
 
 
 
