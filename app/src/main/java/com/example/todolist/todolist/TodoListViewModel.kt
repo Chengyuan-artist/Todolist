@@ -29,6 +29,18 @@ class TodoListViewModel (
         }
     }
 
+    private val _navigateToDetails = MutableLiveData<Long>()
+
+    val navigateToDetails
+        get() = _navigateToDetails
+
+    fun onNoteClicked(id: Long){
+        _navigateToDetails.value = id
+    }
+
+    fun onDetailsNavigated() {
+        _navigateToDetails.value = null
+    }
 
     private suspend fun clear() {
         withContext(Dispatchers.IO) {
@@ -43,6 +55,7 @@ class TodoListViewModel (
         }
         return dog
     }
+
     private suspend fun update(note: Note) {
         withContext(Dispatchers.IO) {
             database.update(note)

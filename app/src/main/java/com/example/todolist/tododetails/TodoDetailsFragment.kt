@@ -32,21 +32,15 @@ class TodoDetailsFragment: Fragment() {
         binding.viewModel=viewModel
         binding.lifecycleOwner=this
 
-        viewModel.livenote.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                it.notecontent= binding.editTextDetailsDetails.text.toString()
-                it.title=binding.editTextDetailsTitle.text.toString()
-                viewModel.update_note(it)
-            }
-        })
 
         binding.buttonDetailsComplete.setOnClickListener {v:View->
-            v.findNavController().
-                navigate(TodoDetailsFragmentDirections.actionTodoDetailsFragmentToTodoListFragment())
+            viewModel.navigatetolist(binding, v)
         }
 
 
         return binding.root
     }
+
+
 
 }

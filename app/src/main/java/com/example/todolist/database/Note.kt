@@ -16,6 +16,9 @@ data class Note(
         var notecontent: String = "空",
 
         @ColumnInfo(name = "creatingtime")
-        var creatingtime: Long = System.currentTimeMillis()
+        var creatingtime: Long = System.currentTimeMillis(),
+
+        @ColumnInfo(name = "importance")
+        var importance:Long =0L
 
 )
