@@ -8,4 +8,9 @@
     <string name="details_details_text">内容</string>
     <string name="details_details_text_hint">在此输入</string>
     <string name="details_complete_button">创建</string>
+    <string name="menubytimedec">时间降序</string>
+    <string name="menubytime">时间升序</string>
+    <string name="menubychar">字母升序</string>
+    <string name="menubychardec">字母降序</string>
+    <string name="menubycustom">自定义</string>
 </resources>
