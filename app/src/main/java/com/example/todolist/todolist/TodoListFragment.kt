@@ -140,9 +140,15 @@ class TodoListFragment : Fragment(), OnItemTouchCallBackListener {
 
             noteList!!.swap(sourcePosition, targetPosition)
 
-            val tmp = noteList!![sourcePosition].importance
-            noteList!![sourcePosition].importance = noteList!![targetPosition].importance
-            noteList!![targetPosition].importance = tmp
+//            val tmp = noteList!![sourcePosition].importance
+//            noteList!![sourcePosition].importance = noteList!![targetPosition].importance
+//            noteList!![targetPosition].importance = tmp
+
+            var num = noteList!!.size.toLong()
+            for (x in noteList!!) {
+                x.importance = num
+                num -= 1
+            }
 
             adapter.submitList(noteList!!.toList())
 
