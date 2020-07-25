@@ -36,7 +36,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textViewDetailsTitle"
@@ -51,23 +51,23 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="textViewTitle"
-                    app:textViewDetailsTitle="@{note}"/>
+                    app:textViewDetailsTitle="@{note}"
+                    tools:text="textViewTitle" />
 
                 <TextView
                     android:id="@+id/textViewItemTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:enabled="false"
                     android:textAlignment="textEnd"
                     android:textSize="12sp"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textViewDetailsTitle"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDetailsTitle"
-                    android:enabled="false"
-                    android:visibility="invisible"
-                    tools:text="time"
-                    app:textViewItemTime="@{note}"/>
+                    app:textViewItemTime="@{note}"
+                    tools:text="time" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
