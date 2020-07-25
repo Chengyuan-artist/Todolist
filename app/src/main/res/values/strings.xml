@@ -2,7 +2,7 @@
     <string name="todo_list_fragment">TodoListFragment</string>
     <string name="todo_details_fragment">TodoDetailsFragment</string>
     <string name="button_write_item">记事</string>
-    <string name="app_name">TodoList</string>
+    <string name="app_name">Orange\'s Note</string>
     <string name="details_title_text">标题</string>
     <string name="details_edit_text_hint">标题</string>
     <string name="details_details_text">内容</string>
